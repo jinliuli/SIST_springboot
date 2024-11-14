@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="http://bit.ly/3WJ5ilK">
+	<style>
+		
+	</style>
+</head>
+<body>
+	<!-- m06.html -->
+	<h1>포맷 출력</h1>
+	
+	<h2>숫자</h2>
+	<div th:text="${num1}"></div> <!-- 1234567 -->
+	<div th:text="${#numbers.formatInteger(num1, 1,'COMMA')}"></div> <!-- 1,234,567 -->
+	<hr>
+	<div th:text="${num2}"></div> <!-- 12345.6789 -->
+	<div th:text="${#numbers.formatDecimal(num2, 1, 1)}"></div> <!-- 12345.7 -->
+	<div th:text="${#numbers.formatDecimal(num2, 1, 2)}"></div> <!-- 12345.68 -->
+	
+	<div th:text="${#numbers.formatDecimal(num2, 1, 'COMMA', 2, 'POINT')}"></div> <!-- 12,345.68 -->
+	
+	
+	<h2>날짜</h2>
+	<!-- <div th:text="${now}"></div> -->
+	<div th:text="${#dates.year(now)}"></div>				<!-- 2024 -->
+	<div th:text="${#dates.month(now)}"></div>				<!-- 11 -->
+	<div th:text="${#dates.monthName(now)}"></div>			<!-- November -->
+	<div th:text="${#dates.monthNameShort(now)}"></div> 	<!-- Nov -->
+	<div th:text="${#dates.day(now)}"></div>				<!-- 14 -->
+	<div th:text="${#dates.hour(now)}"></div>				<!-- 10 -->
+	<div th:text="${#dates.minute(now)}"></div>				<!-- 37 -->
+	<div th:text="${#dates.second(now)}"></div>				<!-- 2 -->
+	<div th:text="${#dates.millisecond(now)}"></div>		<!-- 503 -->
+	<div th:text="${#dates.dayOfWeek(now)}"></div>			<!-- 5 -->
+	<div th:text="${#dates.dayOfWeekName(now)}"></div>		<!-- Thursday -->
+	<div th:text="${#dates.dayOfWeekNameShort(now)}"></div>	<!-- Thu -->
+	
+	<hr>
+	
+	<div th:text="${#dates.format(now)}"></div>				<!-- November 14, 2024, 10:37:02 AM GMT+09:00 -->
+	<div th:text="${#dates.format(now, 'yyy-MM-dd HH:mm:ss')}"></div>	<!-- 2024-11-14 10:37:02 -->
+	<div th:text="${#dates.format(now, 'yyy-MM-dd aa hh:mm:ss')}"></div><!-- 2024-11-14 AM 10:38:06 -->
+	
+	
+</body>
+</html>

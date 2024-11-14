@@ -13,6 +13,7 @@
 	
 	<!--
 		*** 타임리프의 표현식들은 th:속성과 같이 사용한다.
+		*** HTML의 대부분의 속성은 th:속성 으로 제공한다.
 	-->
 	<div>${text}</div>
 	<div th:text="${txt}"></div>
@@ -26,8 +27,19 @@
 	<div style="background-color: rgb(128, 128, 192);">Box</div>
 	<div th:style="'background-color: ' + ${color} + ';'">Box</div>
 	<div th:style="|background-color:${color};|">Box</div> <!-- 파이프 처리 -->
+	<hr>
 	
-	<div th:text="test"></div>
+	<div><input type="checkbox" id="cb1" th:checked="${fleg}">체크함</div>
+	<div><input type="checkbox" th:checked="${age} >= 18"> 성인</div>
+	
+	<div>
+		<select>
+			<option value="red">red</option>
+			<option value="yellow">yellow</option>
+			<option value="cornflowerblue" th:selected="${color == 'cornflowerbule'}">cornflowerblue</option>
+			<option value="orange">orange</option>
+		</select>
+	</div>
 	
 </body>
 </html>

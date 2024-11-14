@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="http://bit.ly/3WJ5ilK">
+	<style>
+		
+	</style>
+</head>
+<body>
+	<!-- m05.html -->
+	<h1>Contents</h1>
+	
+	<!--/* 타임리프 주석 처리 */-->
+	
+	<!--/*  
+	
+		Thymeleaf Taxt
+		1. th:text
+			- excaped text
+			- HTML 구문을 인식안함.
+			- obj.innerText
+			
+		2. th:utext
+			- unexcaped text
+			- HTML 구문을 인식함.
+			- obj.innerHTML
+		
+		
+		인라인 출력
+		- 거의 개부분의 태그는 이 속성을 가지고 있다.
+		- th:inline="text"(기본값)
+		- th:inline="javascript" >> 좋음
+		- th:inline + [[]] //escaped text
+		- th:inline + [()] //unescaped text
+		
+	*/-->
+	
+	<div th:text="${txt1}"></div>
+	<div th:text="${txt2}"></div>
+	
+	<div th:utext="${txt1}"></div>
+	<div th:utext="${txt2}"></div>
+	
+	<hr>
+	
+	<div th:text="${txt1}"></div>
+	<div th:inline="text">[[${txt1}]]</div>
+	<div>[[${txt1}]]</div>
+	
+	<hr>
+	
+	<div th:utext="${txt2}"></div>
+	<div th:inline="text">[(${txt2})]</div>
+	<div>[(${txt2})]</div>
+	
+	<hr>
+	
+	<!-- PCDATA 조작하는 모든 방법 -->
+	<div>이름: 홍길동</div>
+	<div>이름: <span th:text="${name}"></span></div><!-- 자주 사용 -->
+	<div th:text="'이름: ' + ${name}"></div>
+	<div th:text="|이름: ${name}|"></div>
+	<div th:inline="text">이름: [[${name}]]</div>
+	<div>이름: [[${name}]]</div><!-- 자주 사용 -->
+	
+	<hr>
+	
+	<div id="list"></div>
+	
+	<script th:inline="text">
+		
+		//let name1 = '${name}';
+		
+		let name1 = '[[${name}]]';
+		let num1 = '[[${num}]]';
+		let dto1 = '[[${dto}]]';
+		let dto1_name = '[[${dto.name}]]';
+		let dto1_age = '[[${dto.age}]]';
+		let map1 = '[[${map}]]';
+		let names1 = '[[${names}]]';
+		let list1 = '[[${list}]]';
+		
+		
+	</script>
+	
+	<script th:inline="javascript">
+		
+		let name2 = [[${name}]];
+		let num2 = [[${num}]];
+		let dto2 = [[${dto}]]; //자바스크립트 오브젝트로 변경해줌
+		let map2 = [[${map}]];
+		let names2 = [[${names}]];
+		let list2 = [[${list}]];
+		
+		list2.forEach(item => {
+			document.getElementById('list').innerHTML += `
+				<div>${item.name} - ${item.age} - ${item.address}</div>
+			`;
+		});
+		
+		//alert(dto2.name);
+		
+		
+	</script>
+	
+	
+</body>
+</html>
