@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: boot-jpa
+
+  # JDBC 설정
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521/xe
+    username: springboot
+    password: java1234
+
+
+  # 강력 새로고침 되도록 만드는.. (개발할때는 캐시를 꺼놓음 false로)
+  thymeleaf:
+    cache: false
+
+  # JPA 설정
+  jpa:
+    database: oracle
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true # 자동 생성된 SQL을 로그에 출력
+    properties:
+      hibernate:
+        format_sql: true # SQL을 이쁘게 잘보이도록
+
+server:
+  port: 8090
